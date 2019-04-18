@@ -2,6 +2,7 @@ from pandas import DataFrame
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import Perceptron
 
 breast_cancer = load_breast_cancer()
 x = breast_cancer.data[:, :10]
@@ -51,3 +52,9 @@ test_mean = x_test_std.mean(axis=0)
 # 標準化後のテストデータの標準偏差
 test_std = x_test_std.std(axis=0)
 print(test_std)
+
+# パーセプトロンのインスタンスを作成する
+ppn = Perceptron(max_iter=1000, random_state=42)
+
+# パーセプトロンの学習
+ppn.fit(x_train_std, y_train)
